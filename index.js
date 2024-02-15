@@ -103,9 +103,10 @@ for(const item of perguntas){
   const quizItem = template.content.cloneNode(true);
   quizItem.querySelector('h3').textContent = item.pergunta;
   
+  const dl = quizItem.querySelector('dl');
   
   for(let resposta of item.resposta) {
-    const dt = quizItem.querySelector('dl dt').cloneNode(true);
+    const dt = dl.querySelector('dt').cloneNode(true);
     dt.querySelector('span').textContent = resposta;
     dt.querySelector('input').setAttribute('name', 'pergunta-'+ perguntas.indexOf(item));
     dt.querySelector('input').value = item.resposta.indexOf(resposta);
@@ -118,11 +119,8 @@ for(const item of perguntas){
         }
         mostrarTotal.textContent = corretas.size + ' de ' + totalDePerguntas;
     }
-    
-    quizItem.querySelector('dl').appendChild(dt);
+    dl.appendChild(dt); 
   }
   
-  quizItem.querySelector('dl dt').remove();
-
-  quiz.appendChild(quizItem);
+  quiz.appendChild(quizItem); 
 }
